@@ -1,4 +1,5 @@
 #include "basic_input.h"
+#include <ctype.h>
 #include "game.h"
 #include <stdio.h>
 
@@ -13,14 +14,14 @@ void askForInput(Game* game) {
     printf("Podaj litere kolumny i numer rzedu (np. \"A1\"): ");
     char column, row;
     
-    while(scanf(" %c %c", &column, &row) == 0 || !validateInput(game, column, row)) {
+    while(scanf(" %c %c", &column, &row) == 0 || !validateInput(game, toupper(column), row)) {
         
         printf("Nieprawidlowe wartosci, sprobuj jeszcze raz: ");
         removeExtraCharsFromStdin();
         
     }
     
-    setFieldOnBoardToCurrentPlayer(game, column, row);
+    setFieldOnBoardToCurrentPlayer(game, toupper(column), row);
     
 }
 
