@@ -163,12 +163,13 @@ Player checkHorizontalSlants(const Game* game) {
         
         const Player possibleWinner = checkSingleSlant(game, position, false);
         
-        const Vector2 reversedSlantPosition = {game->dimensions.x-position.x-1, position.y};
-        const Player possibleReversedWinner = checkSingleSlant(game, reversedSlantPosition, true);
-
         if(possibleWinner != NO_PLAYER) {
             return possibleWinner;
         }
+        
+        const Vector2 reversedSlantPosition = {game->dimensions.x-position.x-1, position.y};
+        const Player possibleReversedWinner = checkSingleSlant(game, reversedSlantPosition, true);
+
         if(possibleReversedWinner != NO_PLAYER) {
             return possibleReversedWinner;
         }
@@ -189,12 +190,13 @@ Player checkVerticalSlants(const Game* game) {
         
         const Player possibleWinner = checkSingleSlant(game, position, false);
         
-        const Vector2 reversedSlantPosition = {game->dimensions.x-1, position.y};
-        const Player possibleReversedWinner = checkSingleSlant(game, reversedSlantPosition, true);
-        
         if(possibleWinner != NO_PLAYER) {
             return possibleWinner;
         }
+        
+        const Vector2 reversedSlantPosition = {game->dimensions.x-1, position.y};
+        const Player possibleReversedWinner = checkSingleSlant(game, reversedSlantPosition, true);
+        
         if(possibleReversedWinner != NO_PLAYER) {
             return possibleReversedWinner;
         }
@@ -205,8 +207,6 @@ Player checkVerticalSlants(const Game* game) {
     
 }
 
-#include <stdio.h>
-
 Player checkSingleSlant(const Game* game, Vector2 start, bool isReversed) {
 
     Player possibleWinner = game->gameBoard[start.y][start.x];
@@ -214,8 +214,6 @@ Player checkSingleSlant(const Game* game, Vector2 start, bool isReversed) {
     
     for(; start.x < game->dimensions.x && start.y < game->dimensions.y;
           ++start.y, (isReversed ? --start.x : ++start.x)) {
-        
-        printf("POS: %d/%d, POINTS: %d\n", start.x, start.y, pointCounter);
         
         if(game->gameBoard[start.y][start.x] == possibleWinner) {
             ++pointCounter;
@@ -229,9 +227,6 @@ Player checkSingleSlant(const Game* game, Vector2 start, bool isReversed) {
         }
         
     }
-    
-    printf("STOPPOS: %d/%d, POINTS: %d\n", start.x, start.y, pointCounter);
-    printf("RESULT: %c\n\n", possibleWinner);
     
     return (pointCounter == game->requiredPointCount) ? possibleWinner : NO_PLAYER;
     
