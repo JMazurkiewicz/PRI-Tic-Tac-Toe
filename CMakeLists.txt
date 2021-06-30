@@ -1,20 +1,24 @@
 cmake_minimum_required(VERSION 3.10)
-project(Tic-Tac-Toe-PRI C)
+project(Tic-Tac-Toe C)
 
 if(MSVC)
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+    add_compile_options(/W4 /WX)
+else()
+    add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
 
-add_executable(${PROJECT_NAME} 
-               src/basic_input.c
-               src/console.c
-               src/max.c
-               src/end_of_game.c
-               src/game_display.c
-               src/game_initialization.c
-               src/game_input.c
-               src/game.c
-               src/main.c
+set(SOURCES
+    src/game/checks.c
+    src/game/display.c
+    src/game/init.c
+    src/game/input.c
+    src/game/run.c
+
+    src/console_io.c
+    src/main.c
 )
 
-include_directories(include)
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+target_include_directories(${PROJECT_NAME} PUBLIC include)

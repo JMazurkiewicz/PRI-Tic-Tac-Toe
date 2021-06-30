@@ -1,3 +1,8 @@
-#pragma once
+#ifndef MAX_H
+#define MAX_H
 
-unsigned max(unsigned left, unsigned right);
+inline int max(int left, int right) {
+    return (left < right) ? (right) : (left);
+}
+
+#endif

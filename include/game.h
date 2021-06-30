@@ -1,34 +1,33 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 
 #include "player.h"
-#include <stdbool.h>
 #include "vector2.h"
 
-#define LOWEST_DIMENSION 3
-#define GREATEST_DIMENSION 9
+#include <stdbool.h>
 
-typedef struct Game {
+#define SMALLEST_DIMENSION (3)
+#define GREATEST_DIMENSION (9)
+
+struct Game {
+    struct Vector2 dimensions;
+    int requiredPoints;
+
+    enum Player board[GREATEST_DIMENSION][GREATEST_DIMENSION];
     
-    Vector2 dimensions;
-    unsigned requiredPointCount;
+    enum Player currentPlayer;
+    enum Player winner;
+};
 
-    Player gameBoard[GREATEST_DIMENSION][GREATEST_DIMENSION];
-    
-    Player currentPlayer;
-    Player winner;
-    
-} Game;
+void initGame(struct Game* game);
 
-void initGame(Game* game);
+void run(struct Game* game);
 
-void run(Game* game);
+void displayTurnInfo(const struct Game* game);
+void displayGameBoard(const struct Game* game);
+void displayWinnerInfo(struct Game* game);
 
-void displayTurnInfo(const Game* game);
-void displayGameBoard(const Game* game);
+void askForInput(struct Game* game);
+bool isEndOfGame(struct Game* game);
 
-void askForInput(Game* game);
-void switchPlayers(Game* game);
-
-bool isThisEndOfGame(Game* game);
-
-void announceWinner(Game* game);
+#endif

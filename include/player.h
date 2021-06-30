@@ -1,9 +1,10 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 
-typedef enum Player {
-    
-    PLAYER_X = 'X',
-    PLAYER_O = 'O',
+enum Player {
+    X_PLAYER = 'X',
+    O_PLAYER = 'O',
     NO_PLAYER = ' '
-        
-} Player;
+};
+
+#endif

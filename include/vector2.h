@@ -1,8 +1,9 @@
-#pragma once
+#ifndef VECTOR2_H
+#define VECTOR2_H
 
-typedef struct Vector2 {
+struct Vector2 {
+    int x;
+    int y;
+};
 
-    unsigned x;
-    unsigned y;
-
-} Vector2;
+#endif
