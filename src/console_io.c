@@ -31,8 +31,8 @@ void clearStdin() {
 
 void clearConsole() {
 #ifdef _WIN32
-    (void) system("cls");
+    system("cls");
 #else
-    (void) system("clear");
+    system("clear");
 #endif
 }

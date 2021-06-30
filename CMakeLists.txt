@@ -6,6 +6,7 @@ if(MSVC)
     add_compile_options(/W4 /WX)
 else()
     add_compile_options(-Wall -Wextra -pedantic -Werror)
+    add_compile_options(-Wno-unused-result) # GCC is complaining about 'console_io.c:36'
 endif()
 
 set(SOURCES
@@ -17,6 +18,7 @@ set(SOURCES
 
     src/console_io.c
     src/main.c
+    src/math.c
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

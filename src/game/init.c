@@ -1,7 +1,7 @@
 #include "game.h"
 
 #include "console_io.h"
-#include "max.h"
+#include "math.h"
 
 #include <stdlib.h>
 
@@ -37,7 +37,7 @@ void initRequiredPointCount(struct Game* game) {
     if(game->dimensions.x == 3 && game->dimensions.y == 3) {
         game->requiredPoints = 3;
     } else {
-        const int maxPossiblePointCount = max(game->dimensions.x, game->dimensions.y);
+        const int maxPossiblePointCount = maxInt(game->dimensions.x, game->dimensions.y);
         const char* const msg = "amount of points required to win";
 
         game->requiredPoints = scanBoundedInt(msg, SMALLEST_DIMENSION, maxPossiblePointCount);
